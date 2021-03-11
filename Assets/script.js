@@ -71,50 +71,61 @@ function clearStatusClass(element) {
     // Need to make it when a ansewr is clicked the next question comes up
 }
 
+
+
 const questions = [
+    { 
+        question: "Commonly used data types DO NOT include:",
+        answers: ["strings", "booleans", "alerts", "numbers"],
+        answer: "alerts"
+      },
     {
-        question: 'Commonly used data types DO NOT include?',
-        answers: [
-            { text:'Strings', correct: false },
-            { text:'Booleans', correct: false },
-            { text:'Alerts', correct: true },
-            { text:'Numbers', correct: false },
-        ],
-
-        question: 'The condition in an if / else statement is enclosed within ____.',
-        answers: [
-            { text:'Quotes', correct: false },
-            { text:'Parentheses', correct: true },
-            { text:'Curly brackets', correct: false },
-            { text:'Square brackets', correct: false },
-        ],
+        question: "The condition in an if / else statement is enclosed within ____.",
+        answers: ["Quotes", "Parentheses", "Curly brackets", "Square Brackets"],
+        answer: "Parentheses"
+      }, 
+    {
+        question: "Arrays in JavaScript can be used to store ____.",
+        answers: ["Numbers and strings", "Other arrays", "Booleans", "All of the above"],
+        answer: "All of the above"
+      }, 
+    {
+        question: "String values must be enclosed within ____ when being assigned to variables.",
+        answers: ["Commas", "Curly brackets", "Quotes", "Parentheses"],
+        answer: "Quotes"
+      }, 
+    {
+        question: "A very useful tool used during development and debugging for printing content to the debugger is?",
+        answers: ["JavaScript", "Terminal / bash", "QFor loops", "Console.log"],
+        answer: "Console.log"
+      }, 
+    ]
         
-        question: 'Arrays in JavaScript can be used to store ____.',
-        answers: [
-            { text:'Numbers and strings', correct: false },
-            { text:'Other arrays', correct: false },
-            { text:'Booleans', correct: false },
-            { text:'All of the above', correct: true },
-        ],
 
-        question: 'String values must be enclosed within ____ when being assigned to variables.',
-        answers: [
-            { text:'Commas', correct: false },
-            { text:'Curly brackets', correct: false },
-            { text:'Quotes', correct: true },
-            { text:'Parentheses', correct: false },
-        ],
+var currentQuestionIndex = 0
+var choicesEl = document.getElementById("choices");
 
-        question: 'A very useful tool used during development and debugging for printing content to the debugger is?',
-        answers: [
-            { text:'JavaScript', correct: false },
-            { text:'Terminal / bash', correct: false },
-            { text:'For loops', correct: false },
-            { text:'Console.log', correct: true},
-        ],
+function getQuestion() {
+    // get current question object from array
+    var currentQuestion = questions[currentQuestionIndex];
+    // update title with current question
+    var titleEl = document.getElementById("question");
+    titleEl.textContent = currentQuestion.question;
+    console.log(titleEl,"Title");
 
-
-    }
-]
-
-
+    // clear out any old question choices
+    choicesEl.innerHTML = "";
+    // loop over choices
+    currentQuestion.answers.forEach(function(choice, i) {
+      // create new button for each choice
+      var choiceNode = document.createElement("button");
+      choiceNode.setAttribute("class", "btn");
+      choiceNode.setAttribute("value", choice);
+      choiceNode.textContent = i + 1 + ". " + choice;
+      // attach click event listener to each choice
+      choiceNode.onclick = "questionClick";
+      // display on the page
+      choicesEl.appendChild(choiceNode);
+    });
+  }
+getQuestion();
