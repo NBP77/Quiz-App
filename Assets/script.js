@@ -1,4 +1,5 @@
 const startButton = document.getElementById('start-btn');
+const nxtButton = document.getElementById('next-btn');
 const questionContainer = document.getElementById('question-container');
 
 const questionElement = document.getElementById('question')
@@ -6,7 +7,7 @@ const answerBttnElement = document.getElementById('answer-buttons')
 
 var randomQuestions, currQuestionIndex
 
-startButton.addEventListener('click', gameStart)
+startButton.addEventListener('click', gameStart);
 
 function gameStart() {
     console.log('Started');
@@ -37,6 +38,7 @@ function showQuestion(question) {
 }
 
 function resetState() {
+    nxtButton.classList.add('hide')
     while (answerBttnElement.firstChild) {
         answerBttnElement.removeChild(answerBttnElement.firstChild)
     }
@@ -114,3 +116,5 @@ const questions = [
 
     }
 ]
+
+

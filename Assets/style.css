@@ -67,10 +67,17 @@ main {
 }
 
 .start-btn {
-     padding-left: 150px;
-     padding-right: 150px;
-     margin: 10px;
-     
+    padding-right: 100px;
+    padding-left: 100px;
+    margin-left: 15px;
+    
+}
+
+.next-btn {
+    padding-right: 100px;
+    padding-left: 100px;
+    margin-right: 8px;
+    
 }
 
 .start-btn:hover {
@@ -79,6 +86,6 @@ main {
 
 .controls { 
     display: flex;
-    justify-content: center;
+    justify-content: space-around
 
 }
