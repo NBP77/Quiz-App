@@ -17,6 +17,7 @@ function gameStart() {
 }
 
 function getQuestion() {
+    resetState()
     showQuestion(randomQuestions[currQuestionIndex])
 }
 
@@ -35,8 +36,37 @@ function showQuestion(question) {
     });
 }
 
-function selectAnswer(e) {
+function resetState() {
+    while (answerBttnElement.firstChild) {
+        answerBttnElement.removeChild(answerBttnElement.firstChild)
+    }
+}
 
+function selectAnswer(action) {
+    const selectedButton = action.target 
+    const correct = selectedButton.dataset.correct
+    setStatusClass(document.body, correct)
+    Array.from(answerBttnElement.children).forEach(button => {
+        setStatusClass(button, button.dataset.correct)
+    })
+    if (randomQuestions.length > currQuestionIndex + 1) {
+        // move to next question
+    }
+}
+
+function setStatusClass(element, correct) {
+    clearStatusClass(element)
+    if (correct) {
+        element.classList.add('correct')
+    } else {
+      element.classList.add('wrong')
+    }
+}
+
+function clearStatusClass(element) {
+    element.classList.remove('correct')
+    element.classList.remove('wrong')
+    // Need to make it when a ansewr is clicked the next question comes up
 }
 
 const questions = [
@@ -49,54 +79,38 @@ const questions = [
             { text:'Numbers', correct: false },
         ],
 
-        // question: 'Commonly used data types DO NOT include?',
-        // answers: [
-        //     { text:'Strings', correct: false },
-        //     { text:'booleans', correct: false },
-        //     { text:'Alerts', correct: true },
-        //     { text:'numbers', correct: false },
-        // ]
+        question: 'The condition in an if / else statement is enclosed within ____.',
+        answers: [
+            { text:'Quotes', correct: false },
+            { text:'Parentheses', correct: true },
+            { text:'Curly brackets', correct: false },
+            { text:'Square brackets', correct: false },
+        ],
         
+        question: 'Arrays in JavaScript can be used to store ____.',
+        answers: [
+            { text:'Numbers and strings', correct: false },
+            { text:'Other arrays', correct: false },
+            { text:'Booleans', correct: false },
+            { text:'All of the above', correct: true },
+        ],
+
+        question: 'String values must be enclosed within ____ when being assigned to variables.',
+        answers: [
+            { text:'Commas', correct: false },
+            { text:'Curly brackets', correct: false },
+            { text:'Quotes', correct: true },
+            { text:'Parentheses', correct: false },
+        ],
+
+        question: 'A very useful tool used during development and debugging for printing content to the debugger is?',
+        answers: [
+            { text:'JavaScript', correct: false },
+            { text:'Terminal / bash', correct: false },
+            { text:'For loops', correct: false },
+            { text:'Console.log', correct: true},
+        ],
+
+
     }
 ]
-
-
-// Question 1:
-// Commonly used data types DO NOT include:
-// strings
-// booleans
-// alerts
-// numbers
-// Answer is alerts
-
-// Question 2:
-// The condition in an if / else statement is enclosed within ____.
-// quotes
-// curly brackets
-// parentheses
-// square brackets
-// Answer is parentheses
-
-// Question 3:
-// Arrays in JavaScript can be used to store ____.
-// numbers and strings
-// other arrays
-// booleans
-// all of the above
-// Answer is all of the above
-
-// Question 4:
-// String values must be enclosed within ____ when being assigned to variables.
-// commas
-// curly brackets
-// quotes
-// parentheses
-// Answer is quotes
-
-// Question 5:
-//   A very useful tool used during development and debugging for printing content to the debugger is:
-// JavaScript
-// terminal / bash
-// for loops
-// console.log
-// Answer is console.log
