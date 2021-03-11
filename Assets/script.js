@@ -1,7 +1,10 @@
 const startButton = document.getElementById('start-btn');
 const questionContainer = document.getElementById('question-container');
 
-const randomQuestions, currQuestionIndex
+const questionElement = document.getElementById('question')
+const answerBttnElement = document.getElementById('answer-buttons')
+
+var randomQuestions, currQuestionIndex
 
 startButton.addEventListener('click', gameStart)
 
@@ -9,6 +12,7 @@ function gameStart() {
     console.log('Started');
     randomQuestions = questions.sort(() => Math.random() - .5)
     currQuestionIndex = 0
+    questionContainer.classList.remove('hide')
     getQuestion()
 }
 
@@ -16,29 +20,42 @@ function getQuestion() {
     showQuestion(randomQuestions[currQuestionIndex])
 }
 
+function showQuestion(question) {
+    questionElement.innerText = question.question
+    question.answers.forEach(answer => {
+        const button = document.createElement('button')
+        button.innerText = answer.text
+        button.classList.add('btn')
+        if (answer.correct) {
+          button.dataset.correct = answer.correct  
+        }
+        button.addEventListener('click', selectAnswer)
+        answerBttnElement.appendChild(button)
+        
+    });
+}
 
-
-function selectAnswer() {
+function selectAnswer(e) {
 
 }
 
 const questions = [
     {
-        question: 'Commonly used data types DO NOT include:',
+        question: 'Commonly used data types DO NOT include?',
         answers: [
-            {Text:'Strings', correct: false},
-            {Text:'booleans', correct: false},
-            {Text:'Alerts', correct: true},
-            {Text:'numbers', correct: false},
-        ]
+            { text:'Strings', correct: false },
+            { text:'Booleans', correct: false },
+            { text:'Alerts', correct: true },
+            { text:'Numbers', correct: false },
+        ],
 
-        question: 'Commonly used data types DO NOT include:',
-        answers: [
-            {Text:'Strings', correct: false},
-            {Text:'booleans', correct: false},
-            {Text:'Alerts', correct: true},
-            {Text:'numbers', correct: false},
-        ]
+        // question: 'Commonly used data types DO NOT include?',
+        // answers: [
+        //     { text:'Strings', correct: false },
+        //     { text:'booleans', correct: false },
+        //     { text:'Alerts', correct: true },
+        //     { text:'numbers', correct: false },
+        // ]
         
     }
 ]
