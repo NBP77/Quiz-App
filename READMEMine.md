@@ -18,9 +18,9 @@ Quiz Application made with HTML/CSS/JavaScript
 
 To check the project, I worked on click on these links: 
 
-GitHub: https://github.com/NBP77/Nicks-Portfolio
+GitHub: https://github.com/NBP77/Quiz-App
 
-GitHub pages: https://nbp77.github.io/Nicks-Portfolio/ 
+GitHub pages: https://nbp77.github.io/Quiz-App/
 
 ## Usage
 
