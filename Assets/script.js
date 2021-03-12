@@ -77,7 +77,7 @@ const questions = [
     { 
         question: "Commonly used data types DO NOT include:",
         answers: ["strings", "booleans", "alerts", "numbers"],
-        answer: "alerts"
+        answer: "alerts",
       },
     {
         question: "The condition in an if / else statement is enclosed within ____.",
@@ -102,6 +102,7 @@ const questions = [
     ]
         
 
+// I need it to when a answer is chosen thne the next question come us  
 var currentQuestionIndex = 0
 var choicesEl = document.getElementById("choices");
 
@@ -129,3 +130,27 @@ function getQuestion() {
     });
   }
 getQuestion();
+
+  
+// I need the timer to start when the start button is pushed and then link it to when
+// you click the wrong answer the timer goes down by 3.. Also the timer stops at 0
+
+(function() {
+  var sec = 30;
+  function startTimer(){
+      console.log('timer suppose to go')
+      var timer = setInterval(function(){
+          sec--;
+          document.getElementById('timerDisplay').innerHTML='00:'+sec;
+          if (sec < 0) {
+              clearInterval(timer);
+              alert("Time is up!")
+          }
+      }, 1000);
+  }
+  document.getElementById('incorrect').addEventListener('click', function() {
+      sec -= 5;
+      document.getElementById('timerDisplay').innerHTML='00:'+sec;
+  });
+  startTimer();
+})();
